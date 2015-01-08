@@ -142,9 +142,15 @@ elif $use_cache; then
   cd mm-ember && npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
 
 else
+  info "All folders"
+  ls -al
+
   info "Installing node modules"
   touch $build_dir/.npmrc
   npm install --userconfig $build_dir/.npmrc 2>&1 | indent
+
+  info "npmrc"
+  cat .npmrc
 fi
 
 ####### Create a Procfile if possible
