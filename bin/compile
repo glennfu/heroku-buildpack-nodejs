@@ -7,7 +7,7 @@ set -o pipefail   # don't ignore exit codes when piping output
 # set -x          # enable debugging
 
 # Configure directories
-build_dir="${1}/mm-ember"
+build_dir=$1
 cache_dir=$2
 env_dir=$3
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
@@ -98,7 +98,7 @@ if [ "$npm_engine" != "" ]; then
     npm_engine=$(curl --silent --get --data-urlencode "range=${npm_engine}" https://semver.herokuapp.com/npm/resolve)
   fi
   info "Downloading and installing npm $npm_engine (replacing version `npm --version`)..."
-  npm install --quiet -g npm@$npm_engine > /dev/null 2>&1 | indent
+  cd mm-ember && npm install --quiet -g npm@$npm_engine > /dev/null 2>&1 | indent
 fi
 
 # Run subsequent commands from the build directory
