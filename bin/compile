@@ -131,7 +131,7 @@ elif [ $modules_source == "prebuilt" ]; then
   info "Rebuilding any native modules for this architecture"
   npm rebuild 2>&1 | indent
   info "Installing any new modules"
-  npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+  cd mm-ember && npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
 
 elif $use_cache; then
   info "Restoring node modules from cache"
@@ -139,12 +139,12 @@ elif $use_cache; then
   info "Pruning unused dependencies"
   npm prune 2>&1 | indent
   info "Installing any new modules"
-  npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+  cd mm-ember && npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
 
 else
   info "Installing node modules"
   touch $build_dir/.npmrc
-  npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+  cd mm-ember && npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
 fi
 
 ####### Create a Procfile if possible
