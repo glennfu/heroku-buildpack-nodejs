@@ -147,7 +147,7 @@ else
 
   info "Installing node modules"
   touch $build_dir/.npmrc
-  npm install --userconfig $build_dir/.npmrc 2>&1 | indent
+  cd mm-ember && install --userconfig $build_dir/.npmrc 2>&1 | indent
 
   info "npmrc"
   cat .npmrc
